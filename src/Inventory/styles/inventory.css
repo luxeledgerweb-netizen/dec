@@ -1,0 +1,241 @@
+/* src/Inventory/styles/inventory.css */
+/* Local styles for MaxVault-inspired Inventory UI */
+
+/* Animation utilities */
+.inventory-fade-in {
+  animation: inventoryFadeIn 0.2s ease-out;
+}
+
+@keyframes inventoryFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.inventory-slide-up {
+  animation: inventorySlideUp 0.3s ease-out;
+}
+
+@keyframes inventorySlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Custom focus styles for better accessibility */
+.inventory-focus {
+  @apply focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2;
+}
+
+.inventory-focus-inset {
+  @apply focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-inset;
+}
+
+/* Enhanced card hover effects */
+.inventory-card-hover {
+  transition: all 0.2s ease-in-out;
+}
+
+.inventory-card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Tile view specific styles */
+.inventory-tile-large {
+  min-height: 200px;
+}
+
+.inventory-tile-large .inventory-thumbnail {
+  height: 144px;
+}
+
+/* List view specific styles */
+.inventory-list-item {
+  transition: background-color 0.15s ease;
+}
+
+.inventory-list-item:hover {
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+/* Search highlight styles */
+.inventory-search-highlight {
+  @apply bg-yellow-200 font-medium px-0.5 rounded;
+}
+
+/* Filter chip animations */
+.inventory-filter-chip {
+  transition: all 0.2s ease-in-out;
+  transform-origin: center;
+}
+
+.inventory-filter-chip:hover {
+  transform: scale(1.05);
+}
+
+.inventory-filter-chip.active {
+  transform: scale(1.02);
+}
+
+/* Toast specific styles */
+.inventory-toast-enter {
+  animation: inventoryToastSlideIn 0.3s ease-out;
+}
+
+.inventory-toast-exit {
+  animation: inventoryToastSlideOut 0.2s ease-in;
+}
+
+@keyframes inventoryToastSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes inventoryToastSlideOut {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+}
+
+/* Skeleton loader improvements */
+.inventory-skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: inventorySkeletonWave 1.5s infinite;
+}
+
+@keyframes inventorySkeletonWave {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* File type badge enhancements */
+.inventory-file-badge {
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Responsive grid improvements */
+@media (max-width: 640px) {
+  .inventory-grid-responsive {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  .inventory-grid-responsive {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+@media (min-width: 1025px) {
+  .inventory-grid-responsive {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+}
+
+/* Tiles view responsive */
+.inventory-tiles-responsive {
+  display: grid;
+  gap: 2rem;
+}
+
+@media (max-width: 768px) {
+  .inventory-tiles-responsive {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 769px) {
+  .inventory-tiles-responsive {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+  .inventory-fade-in,
+  .inventory-slide-up,
+  .inventory-card-hover,
+  .inventory-filter-chip,
+  .inventory-toast-enter,
+  .inventory-toast-exit {
+    animation: none;
+    transition: none;
+  }
+  
+  .inventory-card-hover:hover {
+    transform: none;
+  }
+  
+  .inventory-filter-chip:hover {
+    transform: none;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .inventory-search-highlight {
+    @apply bg-yellow-400 text-black;
+  }
+  
+  .inventory-file-badge {
+    border-width: 2px;
+  }
+}
+
+/* Dark mode support (if implemented) */
+@media (prefers-color-scheme: dark) {
+  .inventory-skeleton {
+    background: linear-gradient(90deg, #2a2a2a 25%, #1a1a1a 50%, #2a2a2a 75%);
+  }
+  
+  .inventory-search-highlight {
+    @apply bg-yellow-600 text-yellow-100;
+  }
+}
+
+/* Print styles */
+@media print {
+  .inventory-card-hover,
+  .inventory-filter-chip,
+  .inventory-toast-enter,
+  .inventory-toast-exit {
+    animation: none;
+    transition: none;
+  }
+  
+  .inventory-card-hover:hover {
+    transform: none;
+    box-shadow: none;
+  }
+}
